@@ -1,0 +1,17 @@
+{
+  "name": "employees",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm run concur --prefix client",
+    "server": "npm run concur --prefix server",
+    "start": "npm i & concurrently \"npm run client\" \"npm run server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
