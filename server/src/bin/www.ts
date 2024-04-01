@@ -9,6 +9,8 @@ import { createServer } from 'http';
 import debug from 'debug';
 import { ErrnoException } from '@interfaces/ExpressError.interface';
 
+export const JWT_SECRET =
+    'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcxMTk5MDMxNCwiaWF0IjoxNzExOTkwMzE0fQ.Yg9A6Y2fIMqmvw5lo8Hw7R0UNVHtMj86WJtsO9-Lgvs';
 // const debug = require('debug')('employees:server');
 
 const debugInst = debug('employees:server');
@@ -17,7 +19,7 @@ const debugInst = debug('employees:server');
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '8000');
 app.set('port', port);
 
 /**

@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client": "npm run concur --prefix client",
-    "server": "npm run concur --prefix server",
-    "start": "npm i & concurrently \"npm run client\" \"npm run server\""
+    "client:i": "npm run start:i --prefix client",
+    "server:i": "npm run start:i --prefix server",
+    "client": "npm run start --prefix client",
+    "server": "npm run start --prefix server",
+    "start": "concurrently \"npm run client:i\" \"npm run server:i\"",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
   },
   "keywords": [],
   "author": "",

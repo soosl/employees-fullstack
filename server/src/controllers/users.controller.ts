@@ -2,13 +2,12 @@ import { Request, Response } from 'express';
 import { prisma } from '@db/prisma-client';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from 'bin/www';
 
 export class UsersController {
-    private static JWT_SECRET = process.env.JWT_SECRET;
-
     static login = async (req: Request, res: Response) => {
         try {
-            if (!this.JWT_SECRET) {
+            if (!JWT_SECRET) {
                 throw new Error('Нет секрета в енвах');
             }
 
@@ -29,7 +28,7 @@ export class UsersController {
                     email: user.email,
                     name: user.name,
                     id: user.id,
-                    token: jwt.sign({ id: user.id }, this.JWT_SECRET, { expiresIn: '10 h' }),
+                    token: jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '10 h' }),
                 });
             } else {
                 return res.status(400).json({ message: 'Неверный логин или пароль' });
@@ -76,12 +75,12 @@ export class UsersController {
                 },
             });
 
-            if (newUser && this.JWT_SECRET) {
+            if (newUser && JWT_SECRET) {
                 return res.status(201).json({
                     email: newUser.email,
                     name: newUser.name,
                     id: newUser.id,
-                    token: jwt.sign({ id: newUser.id }, this.JWT_SECRET, { expiresIn: '10 h' }),
+                    token: jwt.sign({ id: newUser.id }, JWT_SECRET, { expiresIn: '10 h' }),
                 });
             } else {
                 return res.status(500).json({ message: 'Не удалось создать пользователя' });

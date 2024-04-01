@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "concur": "npm i & npm start",
+    "start:i": "npm i && npm start",
     "start": "nodemon ./src/bin/www.ts",
     "studio": "npx prisma studio"
   },

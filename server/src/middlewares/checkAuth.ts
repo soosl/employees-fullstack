@@ -1,4 +1,5 @@
 import { prisma } from '@db/prisma-client';
+import { JWT_SECRET } from 'bin/www';
 import { Response, NextFunction, Request } from 'express';
 import jwt from 'jsonwebtoken';
 
@@ -9,8 +10,6 @@ export const checkAuth = async (req: Request, res: Response, next: NextFunction)
         if (!token) {
             throw new Error('Нет токена в запросе');
         }
-
-        const JWT_SECRET = process.env.JWT_SECRET;
 
         if (!JWT_SECRET) {
             throw new Error('Нет секрета в енвах');
